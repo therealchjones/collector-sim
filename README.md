@@ -10,7 +10,7 @@ read, but it's best [read at nbviewer.org](https://nbviewer.org/github/therealch
 ## Files
 
 - [Collector's Vault.ipynb](Collector's%20Vault.ipynb) - Jupyter Notebook
-  describing the experiment and including the code. [Read it at nbviewer.org](https://nbviewer.org/github/therealchjones/collector-sim/blob/master/Collector%27s%20Vault.ipynb) for the best experience; viewing in on GitHub is okay, but internal links don't work.
+  describing the experiment and including the code. [Read it at nbviewer.org](https://nbviewer.org/github/therealchjones/collector-sim/blob/master/Collector%27s%20Vault.ipynb) for the best experience; viewing it on GitHub is okay, but internal links don't work.
 - [sim.py](sim.py) - Python script exported from the above notebook for
   command-line invocation; generates the data set but does not analyze
 - output-_n_ - comma-delimited file output from _n_ runs of the simulation,
@@ -52,3 +52,21 @@ jupyter notebook "Collector's Vault.ipynb"
 
 Developed by @therealchjones / chjones@aleph0.com /
 [u/therealchjones](https://www.reddit.com/user/therealchjones)
+
+<p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+  <a rel="license"
+     href="http://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+  </a>
+  <br />
+  To the extent possible under law,
+  <a rel="dct:publisher"
+     href="https://github.com/therealchjones">
+    <span property="dct:title">Christian Jones</span></a>
+  has waived all copyright and related or neighboring rights to
+  <span property="dct:title">Simulating the Collector's Vault</span>.
+This work is published from:
+<span property="vcard:Country" datatype="dct:ISO3166"
+      content="US" about="https://github.com/therealchjones">
+  United States</span>.
+</p>
