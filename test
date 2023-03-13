@@ -57,7 +57,7 @@ if [ -n "$gituptodate" ]; then # the current branch is up to date
 			encfilename="$(urlencode "$filename")"
 			encbranch="$(urlencode "$branch")"
 			echo "View on nbviewer.org at"
-			echo "https://nbviewer.org/github/therealchjones/collector-sim/tree/$encbranch/$encfilename.ipynb"
+			echo "https://nbviewer.org/github/therealchjones/collector-sim/tree/$encbranch/$encfilename.ipynb?flush_cache=true"
 		fi
 	fi
 fi
