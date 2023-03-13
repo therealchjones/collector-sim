@@ -10,11 +10,17 @@ if [ "true" = "${GITHUB_ACTIONS:=}" ]; then
 fi
 
 cd "$(dirname "$0")"
+
+gituptodate=""
+if [ -z "$(git status -su)" ]; then # the current branch is up-to-date
+	gituptodate=y
+fi
+
 python -m venv .venv
 . .venv/bin/activate
 pip -q install --upgrade pip
 pip -q install -r requirements.txt
-jupyter nbconvert --to html "$filename.ipynb"
+jupyter nbconvert --log-level WARN --to html "$filename.ipynb"
 
 urlencode() {
 	encstring=""
@@ -35,7 +41,7 @@ urlencode() {
 
 encfilename="$(urlencode "$filename")"
 
-if [ -z "$(git status -su)" ]; then # the current branch is up to date
+if [ -n "$gituptodate" ]; then # the current branch is up to date
 
 	# Need to check to see what this branch is called
 	branch="$(git branch --show-current)"
