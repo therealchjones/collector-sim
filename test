@@ -16,6 +16,10 @@ if [ -z "$(git status -su)" ]; then # the current branch is up-to-date
 	gituptodate=y
 fi
 
+if [ -d ".venv" ]; then
+	rm -rf .venv
+fi
+mkdir -p .venv
 python -m venv .venv
 . .venv/bin/activate
 pip -q install --upgrade pip
