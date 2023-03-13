@@ -7,6 +7,8 @@ Determines typical cost of participation and likely prizes acquired.
 [This notebook](Collector's%20Vault.ipynb) is probably what you really want to
 read, but it's best [read at nbviewer.org](https://nbviewer.org/github/therealchjones/collector-sim/blob/master/Collector%27s%20Vault.ipynb)
 
+**_This project is no longer under active development and has been archived on GitHub. Dependencies have been updated for any vulnerabilities as of 13 March 2023, but no further updates are expected._**
+
 ## Files
 
 - [Collector's Vault.ipynb](Collector's%20Vault.ipynb) - Jupyter Notebook
