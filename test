@@ -1,0 +1,54 @@
+#!/bin/sh
+
+set -e
+set -u
+
+filename="Collector's Vault"
+
+if [ "true" = "${GITHUB_ACTIONS:=}" ]; then
+	echo "Testing ${GITHUB_REPOSITORY:=}/${GITHUB_HEAD_REF:=}"
+fi
+
+cd "$(dirname "$0")"
+python -m venv .venv
+. .venv/bin/activate
+pip -q install --upgrade pip
+pip -q install -r requirements.txt
+jupyter nbconvert --to html "$filename.ipynb"
+
+urlencode() {
+	encstring=""
+	if [ -n "${1:-}" ]; then
+		encstring="$1"
+	fi
+	sedstring=""
+	trchars="!	#	$	&	'	(	)	+	,	/	:	;	=	?	@	[	]"
+	prchars="%25	%29	%21	%23	%24	%26	%27	%28	%2A	%2B	%2C	%2F	%3A	%3B	%3D	%3F	%40	%5B	%5D"
+	for char in "%" "*" $trchars; do
+		newchar="${prchars%%	*}"
+		sedstring="$sedstring -e s|\\$char|$newchar|g"
+		prchars="${prchars#*	}"
+	done
+	#shellcheck disable=2086
+	echo "$encstring" | sed -E $sedstring
+}
+
+encfilename="$(urlencode "$filename")"
+
+if [ -z "$(git status -su)" ]; then # the current branch is up to date
+
+	# Need to check to see what this branch is called
+	branch="$(git branch --show-current)"
+
+	# Need to see if this branch is published on GitHub
+	origin="$(git remote show | head -n 1)"
+	if [ -n "$origin" ]; then
+		originurl="$(git remote get-url "$origin")"
+		if [ "$originurl" != "${originurl#*github}" ] \
+			&& git ls-remote --exit-code "$origin" "$branch" >/dev/null; then
+			encbranch="$(urlencode "$branch")"
+			echo "View on nbviewer.org at"
+			echo "https://nbviewer.org/github/therealchjones/collector-sim/tree/$encbranch/$encfilename.html"
+		fi
+	fi
+fi
